@@ -297,7 +297,6 @@ class CustomFluxTransformer2DModel(FluxTransformer2DModel):
                 hidden_states = torch.utils.checkpoint.checkpoint(
                     create_custom_forward(block),
                     hidden_states,
-                    encoder_hidden_states,
                     temb,
                     image_rotary_emb,
                     **ckpt_kwargs,
@@ -306,7 +305,6 @@ class CustomFluxTransformer2DModel(FluxTransformer2DModel):
             else:
                 hidden_states = block(
                     hidden_states=hidden_states,
-                    encoder_hidden_states=encoder_hidden_states,
                     temb=temb,
                     image_rotary_emb=image_rotary_emb,
                 )
